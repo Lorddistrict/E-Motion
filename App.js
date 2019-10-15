@@ -1,22 +1,26 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, ImageBackground, View } from 'react-native';
 import { createAppContainer } from "react-navigation";
-// import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import HomeScreen from './src/components/HomeScreen';
-import BookingScreen from './src/components/BookingScreen';
-import SearchScreen from './src/components/SearchScreen';
-import ProfileScreen from './src/components/ProfileScreen';
+import HomeScreen from './src/components/Home/HomeScreen';
+import BookingScreen from './src/components/Booking/BookingScreen';
+import SearchScreen from './src/components/Search/SearchScreen';
+import ProfileScreen from './src/components/Profile/ProfileScreen';
 
 export default class App extends React.Component {
     render() {
-        return <AppContainer />;
+        return (
+            <View style={styles.container}>
+                <ImageBackground source={{uri: 'https://mfiles.alphacoders.com/638/638263.png'}} style={styles.bg}>
+                    <AppContainer />
+                </ImageBackground>
+            </View>
+        )
     }
 }
 
-// const AppNavigator = createStackNavigator({
 const AppNavigator = createBottomTabNavigator({
     Home: {
         screen: HomeScreen
@@ -55,8 +59,10 @@ const AppNavigator = createBottomTabNavigator({
         },
     }),
     tabBarOptions: {
-        activeTintColor: 'darkblue',
-        inactiveTintColor: 'gray',
+        activeTintColor: '#f55555',
+        inactiveTintColor: '#0f5073',
+        activeBackgroundColor: '#e3e3e3',
+        inactiveBackgroundColor: '#e3e3e3'
     },
 });
 
@@ -65,8 +71,12 @@ const AppContainer = createAppContainer(AppNavigator);
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
     },
+    bg: {
+        flex: 1,
+        width: '100%',
+        height: '100%'
+    }
 });

@@ -21,13 +21,12 @@ export default class VehicleList extends React.Component {
     }
 
     async componentDidMount() {
-        fetch('http://ec2-34-244-49-67.eu-west-1.compute.amazonaws.com:3030/vehicles')
-        //fetch('https://jsonplaceholder.typicode.com/users')
+        fetch('http://51.77.221.45:3000/vehicle')
         .then(response => response.json())
         .then((responseJson) => {
             this.setState({
                 loading: false,
-                dataSource: responseJson['data']
+                dataSource: responseJson
             })
         })
         .catch(error => console.log(error))
@@ -50,19 +49,18 @@ export default class VehicleList extends React.Component {
                 <View style={styles.imgBox}>
                     <Image
                         style={{width: 150, height: 150}}
-                        source = {{uri: 'https://placehold.it/150x150'}}
+                        source={{uri: data.item.main_picture}}
                     />
                 </View>
                 <View style={styles.dataBox}>
                     <View>
                         <Text style={styles.lightText}>Modèle : {data.item.model}</Text>
                         <Text style={styles.lightText}>Couleur : {data.item.color}</Text>
-                        <Text style={styles.lightText}>N° de plaque : {data.item.numberplate}</Text>
-                        <Text style={styles.lightText}>Prix : {data.item.pricesale}€</Text>
+                        <Text style={styles.lightText}>N° de plaque : {data.item.license_plate}</Text>
+                        <Text style={styles.lightText}>Prix : {data.item.rental_price}€/j</Text>
                     </View>
                     <Button
                         title="Voir l'offre"
-                        color="#337ab7"
                         onPress={() => Alert.alert('Clicked on ' + data.item.model)}
                         style={styles.offerBtn}
                     />
@@ -81,10 +79,10 @@ export default class VehicleList extends React.Component {
         return(
             <View style={styles.container}>
                 <FlatList
-                    data = {this.state.dataSource}
-                    ItemSeparatorComponent = {this.FlatListItemSeparator}
-                    renderItem = {item => this.renderItem(item)}
-                    keyExtractor = {item => item.id.toString()}
+                    data={this.state.dataSource}
+                    ItemSeparatorComponent={this.FlatListItemSeparator}
+                    renderItem={item => this.renderItem(item)}
+                    keyExtractor={item => item.uuid.toString()}
                 />
             </View>
         )
@@ -94,19 +92,19 @@ export default class VehicleList extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#145373',
         width: '100%',
     },
     loader: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: '#ffffff',
     },
     list: {
         paddingVertical: 4,
         margin: 5,
-        backgroundColor: '#fff',
+        backgroundColor: '#ffffff',
     },
     elementContainer: {
         flex: 1,
@@ -126,5 +124,6 @@ const styles = StyleSheet.create({
     offerBtn: {
         flex: 1,
         marginBottom: 50,
+        color: '#ffffff'
     }
 });

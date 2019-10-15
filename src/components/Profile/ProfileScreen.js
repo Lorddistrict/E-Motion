@@ -7,8 +7,8 @@ export default class ContactScreen extends Component {
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <Text>Profile Screen</Text>
                 <Button
-                    title="Go to Home"
-                    onPress={() => this.props.navigation.navigate('Home')}
+                    title="Go to Login"
+                    onPress={() => this.props.navigation.navigate('LoginScreen')}
                 />
             </View>
         )

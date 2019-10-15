@@ -6,10 +6,10 @@ import {
 } from 'react-native';
 import VehicleList from './VehicleList';
 
-export default class ContactScreen extends Component {
+export default class BookingScreen extends Component {
     render() {
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={styles.bookingContainer}>
                 <Text style={styles.bookingTitle}>Booking Screen</Text>
                 <VehicleList />
             </View>
@@ -18,6 +18,11 @@ export default class ContactScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+    bookingContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     bookingTitle: {
         marginTop: 40,
     }
