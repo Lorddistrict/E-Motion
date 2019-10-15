@@ -8,6 +8,7 @@ import HomeScreen from './src/components/Home/HomeScreen';
 import BookingScreen from './src/components/Booking/BookingScreen';
 import SearchScreen from './src/components/Search/SearchScreen';
 import ProfileScreen from './src/components/Profile/ProfileScreen';
+import LoginScreen from './src/components/Login/LoginScreen';
 
 export default class App extends React.Component {
     render() {
@@ -33,6 +34,9 @@ const AppNavigator = createBottomTabNavigator({
     },
     Profile: {
         screen: ProfileScreen
+    },
+    Login: {
+        screen: LoginScreen
     }
 }, {
     initialRouteName: "Home",
@@ -62,7 +66,7 @@ const AppNavigator = createBottomTabNavigator({
         activeTintColor: '#f55555',
         inactiveTintColor: '#0f5073',
         activeBackgroundColor: '#e3e3e3',
-        inactiveBackgroundColor: '#e3e3e3'
+        inactiveBackgroundColor: '#e3e3e3',
     },
 });
 
