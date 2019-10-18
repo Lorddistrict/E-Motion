@@ -1,76 +1,51 @@
 import React from 'react';
 import { StyleSheet, ImageBackground, View } from 'react-native';
-import { createAppContainer } from "react-navigation";
-import { createBottomTabNavigator } from "react-navigation-tabs";
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 
-import HomeScreen from './src/components/Home/HomeScreen';
-import BookingScreen from './src/components/Booking/BookingScreen';
-import SearchScreen from './src/components/Search/SearchScreen';
-import ProfileScreen from './src/components/Profile/ProfileScreen';
+// Screens
+import WelcomeScreen from './src/components/Welcome/WelcomeScreen';
+import DashboardScreen from './src/components/Dashboard/DashboardScreen';
 import LoginScreen from './src/components/Login/LoginScreen';
+import HomeScreen from "./src/components/Home/HomeScreen";
+import BookingScreen from "./src/components/Booking/BookingScreen";
+import SearchScreen from "./src/components/Search/SearchScreen";
+import ProfileScreen from "./src/components/Profile/ProfileScreen";
 
-export default class App extends React.Component {
-    render() {
-        return (
-            <View style={styles.container}>
-                <ImageBackground source={{uri: 'https://mfiles.alphacoders.com/638/638263.png'}} style={styles.bg}>
-                    <AppContainer />
-                </ImageBackground>
-            </View>
-        )
-    }
+
+
+class App extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <ImageBackground source={{uri: 'https://mfiles.alphacoders.com/638/638263.png'}} style={styles.bg}>
+            <AppContainer/>
+        </ImageBackground>
+      </View>
+    )
+  }
 }
 
-const AppNavigator = createBottomTabNavigator({
-    Home: {
-        screen: HomeScreen
-    },
-    Booking: {
-        screen: BookingScreen
-    },
-    Search: {
-        screen: SearchScreen
-    },
-    Profile: {
-        screen: ProfileScreen
+export default App;
+
+const AppTabNavigator = createBottomTabNavigator({
+  Home: HomeScreen,
+  Booking: BookingScreen,
+  Search: SearchScreen,
+  Profile: ProfileScreen
+});
+
+const AppSwicthNavigator = createSwitchNavigator({
+    Welcome: {
+        screen: WelcomeScreen
     },
     Login: {
         screen: LoginScreen
     }
-}, {
-    initialRouteName: "Home",
-    defaultNavigationOptions: ({ navigation }) => ({
-        tabBarIcon: ({ focused, horizontal, tintColor }) => {
-            const { routeName } = navigation.state;
-            let IconComponent = Ionicons;
-            let iconName;
-            
-            if (routeName === 'Home') {
-                iconName = `ios-home`;
-            } 
-            else if (routeName === 'Booking') {
-                iconName = `ios-list`;
-            }
-            else if (routeName === 'Search') {
-                iconName = `ios-search`;
-            }
-            else if (routeName === 'Profile') {
-                iconName = `ios-contact`;
-            }
-            
-            return <IconComponent name={iconName} size={25} color={tintColor} />;
-        },
-    }),
-    tabBarOptions: {
-        activeTintColor: '#f55555',
-        inactiveTintColor: '#0f5073',
-        activeBackgroundColor: '#e3e3e3',
-        inactiveBackgroundColor: '#e3e3e3',
-    },
 });
 
-const AppContainer = createAppContainer(AppNavigator);
+const AppContainer = createAppContainer(AppSwicthNavigator)
+
 
 const styles = StyleSheet.create({
     container: {
@@ -81,6 +56,6 @@ const styles = StyleSheet.create({
     bg: {
         flex: 1,
         width: '100%',
-        height: '100%'
+        height: '100%'    
     }
 });
