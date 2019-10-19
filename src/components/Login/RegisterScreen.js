@@ -8,7 +8,7 @@ import {
 import Logo from "./Logo";
 import Form from "./Form";
 
-class SignupScreen extends React.Component {
+class RegisterScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -16,13 +16,11 @@ class SignupScreen extends React.Component {
           backgroundColor={'#1c313a'}
           barStyle={'light-content'}
         />
-        <Logo />
-        <Form type={'Login'}/>
-        <View style={styles.signinTextCont}>
-          <Text style={styles.signinText}>Already have an account ?</Text>
-          <Text style={styles.signinLink}>
-            Sign in
-          </Text>
+        <Logo/>
+        <Form type={'Register'}/>
+        <View style={styles.signupTextCont}>
+          <Text style={styles.signupText}>Don't have an account yet ?</Text>
+          <Text style={styles.signupLink}>Sign in</Text>
         </View>
       </View>
     )
@@ -40,18 +38,18 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 18,
   },
-  signinTextCont: {
+  signupTextCont: {
     flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'flex-end',
     marginVertical: 16,
     flexDirection: 'row',
   },
-  signinText: {
+  signupText: {
     color: 'rgba(255, 255, 255, 0.7)',
     fontSize: 16,
   },
-  signinLink: {
+  signupLink: {
     marginLeft: 5,
     fontWeight: '500',
     color: '#e2faff',
@@ -59,4 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignupScreen;
+export default RegisterScreen;

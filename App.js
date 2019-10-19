@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, ImageBackground, View } from 'react-native';
-import { createSwitchNavigator, createAppContainer } from 'react-navigation';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
+import {StyleSheet, ImageBackground, View} from 'react-native';
+import {createSwitchNavigator, createAppContainer} from 'react-navigation';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
 
 // Screens
 import WelcomeScreen from './src/components/Welcome/WelcomeScreen';
@@ -11,7 +11,7 @@ import HomeScreen from "./src/components/Home/HomeScreen";
 import BookingScreen from "./src/components/Booking/BookingScreen";
 import SearchScreen from "./src/components/Search/SearchScreen";
 import ProfileScreen from "./src/components/Profile/ProfileScreen";
-
+import RegisterScreen from "./src/components/Login/RegisterScreen";
 
 
 class App extends React.Component {
@@ -19,7 +19,7 @@ class App extends React.Component {
     return (
       <View style={styles.container}>
         <ImageBackground source={{uri: 'https://mfiles.alphacoders.com/638/638263.png'}} style={styles.bg}>
-            <AppContainer/>
+          <AppContainer/>
         </ImageBackground>
       </View>
     )
@@ -36,26 +36,29 @@ const AppTabNavigator = createBottomTabNavigator({
 });
 
 const AppSwicthNavigator = createSwitchNavigator({
-    Welcome: {
-        screen: WelcomeScreen
-    },
-    Login: {
-        screen: LoginScreen
-    }
+  Welcome: {
+    screen: WelcomeScreen
+  },
+  Login: {
+    screen: LoginScreen
+  },
+  Register: {
+    screen: RegisterScreen
+  }
 });
 
 const AppContainer = createAppContainer(AppSwicthNavigator)
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    bg: {
-        flex: 1,
-        width: '100%',
-        height: '100%'    
-    }
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  bg: {
+    flex: 1,
+    width: '100%',
+    height: '100%'
+  }
 });
