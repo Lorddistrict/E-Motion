@@ -8,7 +8,7 @@ import {
 import Logo from "./Logo";
 import Form from "./Form";
 
-class SignupScreen extends React.Component {
+class LoginScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -59,4 +59,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignupScreen;
+export default LoginScreen;

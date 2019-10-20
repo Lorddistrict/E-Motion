@@ -12,6 +12,8 @@ import BookingScreen from "./src/components/Booking/BookingScreen";
 import SearchScreen from "./src/components/Search/SearchScreen";
 import ProfileScreen from "./src/components/Profile/ProfileScreen";
 import RegisterScreen from "./src/components/Login/RegisterScreen";
+import {createStackNavigator} from "react-navigation-stack";
+import {createDrawerNavigator} from "react-navigation-drawer";
 
 
 class App extends React.Component {
@@ -28,11 +30,21 @@ class App extends React.Component {
 
 export default App;
 
-const AppTabNavigator = createBottomTabNavigator({
+const DashboardTabNavigator = createBottomTabNavigator({
   Home: HomeScreen,
   Booking: BookingScreen,
   Search: SearchScreen,
   Profile: ProfileScreen
+});
+
+const DashboardStackNavigator = createStackNavigator({
+  DashboardTabNavigator: DashboardTabNavigator
+});
+
+const AppDrawerNavigator = createDrawerNavigator({
+  Dashboard: {
+    screen: DashboardStackNavigator
+  }
 });
 
 const AppSwicthNavigator = createSwitchNavigator({
@@ -44,6 +56,9 @@ const AppSwicthNavigator = createSwitchNavigator({
   },
   Register: {
     screen: RegisterScreen
+  },
+  Test: {
+    screen: AppDrawerNavigator
   }
 });
 
