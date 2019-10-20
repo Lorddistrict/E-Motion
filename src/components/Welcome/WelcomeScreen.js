@@ -1,30 +1,23 @@
 import React, { Component } from 'react';
-import { 
-  View, 
-  StyleSheet,
-  Text,
-} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class WelcomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.login}
           onPress={() => this.props.navigation.navigate('Login')}
         >
           <Text style={styles.text}>Login</Text>
         </TouchableOpacity>
-
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.login}
           onPress={() => this.props.navigation.navigate('Register')}
         >
           <Text style={styles.text}>Register</Text>
         </TouchableOpacity>
-
       </View>
     );
   }
@@ -37,6 +30,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#bfddb5',
   },
   login: {
     fontWeight: '500',

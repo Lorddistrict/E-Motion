@@ -34,11 +34,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#455a64',
-  },
-  hello: {
-    color: '#ffffff',
-    fontSize: 18,
+    backgroundColor: '#ddb4a6',
   },
   signinTextCont: {
     flexGrow: 1,

@@ -12,7 +12,7 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      email: '',
       password: '',
     }
   }
@@ -35,7 +35,7 @@ class Form extends React.Component {
                    underlineColorAndroid={'rgba(0,0,0,0)'}
                    placeholder={'Email'}
                    placeholderTextColor={'#b9b9b9'}
-                   onChangeText={ (username) => this.setState({username}) }
+                   onChangeText={ (email) => this.setState({email}) }
         />
         <TextInput style={styles.inputBox}
                    underlineColorAndroid={'rgba(0,0,0,0)'}
@@ -56,25 +56,25 @@ class Form extends React.Component {
   }
 
   login = () => {
-    fetch('http://92.170.169.10:3000/users/login', {
+    fetch('http://51.77.221.45:3000/users/login', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: this.state.username,
+        email: this.state.email,
         password: this.state.password,
       })
     })
     .then((response) => response.json())
-    .then((res) => {
-      console.log('res');
-      if (res.success === true) {
-        AsyncStorage.setItem('user', res.user);
+    .then((response) => {
+      if (response.success) {
+        console.log('success');
+        AsyncStorage.setItem('user', response.user);
         this.props.navigation.navigate('Home');
       } else {
-        alert(res.message);
+        alert('error');
       }
     })
     .done();
