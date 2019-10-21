@@ -30,18 +30,44 @@ const AppTabNavigator = createBottomTabNavigator({
   Booking: BookingScreen,
   Search: SearchScreen,
   Profile: ProfileScreen
+}, {
+  initialRouteName: 'Home',
+});
+
+const AppStack = createStackNavigator({
+  Tabs: AppTabNavigator,
 });
 
 const AuthStack = createStackNavigator({
-  Welcome: WelcomeScreen,
-  Login: LoginScreen,
-  Register: RegisterScreen,
+  Welcome: {
+    screen: WelcomeScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Login: {
+    screen: LoginScreen,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#1c313a',
+      },
+      headerTintColor: '#ffffff',
+    },
+  },
+  Register: {
+    screen: RegisterScreen,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#1c313a',
+      },
+      headerTintColor: '#ffffff',
+    },
+  },
 });
 
 const AppSwitchNavigator = createSwitchNavigator({
-  Welcome: WelcomeScreen,
   Auth: AuthStack,
-  App: AppTabNavigator,
+  App: AppStack,
 });
 
 const AppContainer = createAppContainer(AppSwitchNavigator);
@@ -49,8 +75,7 @@ const AppContainer = createAppContainer(AppSwitchNavigator);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#b5b5b5',
+    backgroundColor: '#455a64',
   }
 });

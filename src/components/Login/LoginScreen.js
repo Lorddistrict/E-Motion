@@ -17,7 +17,7 @@ class LoginScreen extends React.Component {
           barStyle={'light-content'}
         />
         <Logo />
-        <Form type={'Login'}/>
+        <Form type={'Login'} navigation={this.props.navigation} />
         <View style={styles.signinTextCont}>
           <Text style={styles.signinText}>Already have an account ?</Text>
           <Text style={styles.signinLink}>
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ddb4a6',
+    backgroundColor: '#455a64',
   },
   signinTextCont: {
     flexGrow: 1,

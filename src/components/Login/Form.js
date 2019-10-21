@@ -14,7 +14,7 @@ class Form extends React.Component {
     this.state = {
       email: '',
       password: '',
-    }
+    };
   }
 
   componentDidMount() {
