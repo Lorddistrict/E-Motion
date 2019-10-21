@@ -1,56 +1,49 @@
-import React from 'react';
-import {StyleSheet, ImageBackground, View} from 'react-native';
-import {createSwitchNavigator, createAppContainer} from 'react-navigation';
-import {createBottomTabNavigator} from 'react-navigation-tabs';
-import {createStackNavigator} from "react-navigation-stack";
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow
+ */
 
-// Screens
-import WelcomeScreen from './src/components/Welcome/WelcomeScreen';
-import LoginScreen from './src/components/Login/LoginScreen';
-import HomeScreen from "./src/components/Home/HomeScreen";
-import BookingScreen from "./src/components/Booking/BookingScreen";
-import SearchScreen from "./src/components/Search/SearchScreen";
-import ProfileScreen from "./src/components/Profile/ProfileScreen";
-import RegisterScreen from "./src/components/Login/RegisterScreen";
+import React, {Component} from 'react';
+import {Platform, StyleSheet, Text, View} from 'react-native';
 
-class App extends React.Component {
+const instructions = Platform.select({
+  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
+  android:
+    'Double tap R on your keyboard to reload,\n' +
+    'Shake or press menu button for dev menu',
+});
+
+type Props = {};
+export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <AppContainer />
+        <Text style={styles.welcome}>Welcome to React Native!</Text>
+        <Text style={styles.instructions}>To get started, edit App.js</Text>
+        <Text style={styles.instructions}>{instructions}</Text>
       </View>
-    )
+    );
   }
 }
-
-export default App;
-
-const AppTabNavigator = createBottomTabNavigator({
-  Home: HomeScreen,
-  Booking: BookingScreen,
-  Search: SearchScreen,
-  Profile: ProfileScreen
-});
-
-const AuthStack = createStackNavigator({
-  Welcome: WelcomeScreen,
-  Login: LoginScreen,
-  Register: RegisterScreen,
-});
-
-const AppSwitchNavigator = createSwitchNavigator({
-  Welcome: WelcomeScreen,
-  Auth: AuthStack,
-  App: AppTabNavigator,
-});
-
-const AppContainer = createAppContainer(AppSwitchNavigator);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#b5b5b5',
-  }
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
 });
