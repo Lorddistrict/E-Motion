@@ -1,11 +1,6 @@
 import React, {Component} from 'react'
-import {
-  StyleSheet,
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity, AsyncStorage,
-} from 'react-native';
+import {StyleSheet, View, Text, TextInput, TouchableOpacity, AsyncStorage, Platform } from 'react-native';
+import Icon from "react-native-vector-icons/Ionicons";
 
 class Form extends React.Component {
 
@@ -31,26 +26,43 @@ class Form extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TextInput style={styles.inputBox}
-                   underlineColorAndroid={'rgba(0,0,0,0)'}
-                   placeholder={'Email'}
-                   placeholderTextColor={'#b9b9b9'}
-                   onChangeText={ (email) => this.setState({email}) }
-        />
-        <TextInput style={styles.inputBox}
-                   underlineColorAndroid={'rgba(0,0,0,0)'}
-                   placeholder={'Password'}
-                   placeholderTextColor={'#b9b9b9'}
-                   secureTextEntry={true}
-                   onChangeText={ (password) => this.setState({password}) }
-        />
-        <TouchableOpacity style={styles.button}
-                          onPress={this.login}
-        >
-          <Text style={styles.buttonText}>
-            {this.props.type}
-          </Text>
-        </TouchableOpacity>
+        <View style={styles.loginBox}>
+
+          <View style={styles.field}>
+            <Icon style={styles.icon}
+                  name={Platform.OS === "ios" ? "ios-person" : "md-person"}
+                  size={25}
+            />
+            <TextInput style={styles.inputBox}
+                       underlineColorAndroid={'rgba(0,0,0,0)'}
+                       placeholder={'Email'}
+                       placeholderTextColor={'#b9b9b9'}
+                       onChangeText={ (email) => this.setState({email}) }
+            />
+          </View>
+
+          <View style={styles.field}>
+            <Icon style={styles.icon}
+                  name={Platform.OS === "ios" ? "ios-lock" : "md-lock"}
+                  size={25}
+            />
+            <TextInput style={styles.inputBox}
+                       underlineColorAndroid={'rgba(0,0,0,0)'}
+                       placeholder={'Password'}
+                       placeholderTextColor={'#b9b9b9'}
+                       secureTextEntry={true}
+                       onChangeText={ (password) => this.setState({password}) }
+            />
+          </View>
+
+          <TouchableOpacity style={styles.button}
+                            onPress={this.login}
+          >
+            <Text style={styles.buttonText}>
+              {this.props.type}
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
@@ -84,15 +96,30 @@ class Form extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  field: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomColor: '#ccc',
+    borderBottomWidth: 1,
+    paddingVertical: 30,
+  },
+  icon: {
+    color: '#000000',
+    paddingHorizontal: 20,
+  },
+  loginBox: {
+    backgroundColor: '#e7e7e7',
+    width: '95%',
     justifyContent: 'center',
     alignItems: 'center',
   },
   inputBox: {
-    width: 300,
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
-    borderRadius: 25,
-    paddingHorizontal: 16,
+    width: '90%',
     fontSize: 16,
     color: '#ffffff',
     marginVertical: 10,
@@ -100,7 +127,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 200,
-    backgroundColor: '#1c313a',
+    backgroundColor: '#5e55ff',
     borderRadius: 25,
     marginVertical: 10,
     paddingHorizontal: 12,

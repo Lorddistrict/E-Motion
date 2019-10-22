@@ -48,10 +48,7 @@ const AuthStack = createStackNavigator({
   Login: {
     screen: LoginScreen,
     navigationOptions: {
-      headerStyle: {
-        backgroundColor: '#1c313a',
-      },
-      headerTintColor: '#ffffff',
+      header: null,
     },
   },
   Register: {
