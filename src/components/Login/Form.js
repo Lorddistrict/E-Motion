@@ -62,6 +62,12 @@ class Form extends React.Component {
               {this.props.type}
             </Text>
           </TouchableOpacity>
+
+          <View style={styles.links}>
+            <Text style={styles.link}>Create Account</Text>
+            <Text style={styles.link}>Forgot Password</Text>
+          </View>
+
         </View>
       </View>
     )
@@ -106,7 +112,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomColor: '#ccc',
     borderBottomWidth: 1,
-    paddingVertical: 30,
+    paddingVertical: 10,
+    marginHorizontal: 30,
   },
   icon: {
     color: '#000000',
@@ -114,7 +121,7 @@ const styles = StyleSheet.create({
   },
   loginBox: {
     backgroundColor: '#e7e7e7',
-    width: '95%',
+    width: '90%',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -123,14 +130,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#ffffff',
     marginVertical: 10,
+    paddingHorizontal: 10,
     height: 50,
   },
   button: {
-    width: 200,
+    width: 300,
     backgroundColor: '#5e55ff',
     borderRadius: 25,
-    marginVertical: 10,
-    paddingHorizontal: 12,
+    marginVertical: 20,
     height: 50,
     justifyContent: 'center',
   },
@@ -140,6 +147,16 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     textAlign: 'center',
   },
+  links: {
+    flexDirection: 'row',
+    width: '100%',
+  },
+  link: {
+    marginHorizontal: 45,
+    color: '#5e55ff',
+    marginTop: 10,
+    marginBottom: 50,
+  }
 });
 
 export default Form;

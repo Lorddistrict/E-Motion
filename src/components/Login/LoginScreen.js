@@ -16,7 +16,7 @@ class LoginScreen extends React.Component {
 
         <BackgroundCity />
 
-        <Form type={'Login'} navigation={this.props.navigation} />
+        <Form type={'Sign In'} navigation={this.props.navigation} />
 
       </View>
     )

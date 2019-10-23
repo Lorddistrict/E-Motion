@@ -40,7 +40,7 @@ const AppStack = createStackNavigator({
 
 const AuthStack = createStackNavigator({
   Welcome: {
-    screen: WelcomeScreen,
+    screen: HomeScreen,
     navigationOptions: {
       header: null,
     },
@@ -60,6 +60,8 @@ const AuthStack = createStackNavigator({
       headerTintColor: '#ffffff',
     },
   },
+}, {
+  initialRouteName: 'Welcome',
 });
 
 const AppSwitchNavigator = createSwitchNavigator({
