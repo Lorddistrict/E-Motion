@@ -3,6 +3,7 @@ import {StyleSheet, ImageBackground, View} from 'react-native';
 import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createStackNavigator} from "react-navigation-stack";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 // Screens
 import WelcomeScreen from './src/components/Welcome/WelcomeScreen';
@@ -26,12 +27,47 @@ class App extends React.Component {
 export default App;
 
 const AppTabNavigator = createBottomTabNavigator({
-  Home: HomeScreen,
-  Booking: BookingScreen,
-  Search: SearchScreen,
-  Profile: ProfileScreen
+  Home: {
+    screen: HomeScreen,
+    navigationOptions: {
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="home" size={25} color={tintColor} />
+      )
+    }
+  },
+  Booking: {
+    screen: BookingScreen,
+    navigationOptions: {
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="th-large" size={25} color={tintColor} />
+      )
+    }
+  },
+  Search: {
+    screen: SearchScreen,
+    navigationOptions: {
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="search" size={25} color={tintColor} />
+      )
+    }
+  },
+  Profile: {
+    screen: ProfileScreen,
+    navigationOptions: {
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="user" size={25} color={tintColor} />
+      )
+    }
+  }
 }, {
-  initialRouteName: 'Home',
+  initialRouteName: 'Booking',
+  tabBarOptions: {
+    activeTintColor: '#9f57ff',
+    inactiveTintColor: 'gray',
+    style: {
+      backgroundColor: 'white',
+    }
+  },
 });
 
 const AppStack = createStackNavigator({
@@ -40,7 +76,7 @@ const AppStack = createStackNavigator({
 
 const AuthStack = createStackNavigator({
   Welcome: {
-    screen: HomeScreen,
+    screen: AppTabNavigator,
     navigationOptions: {
       header: null,
     },
