@@ -67,16 +67,38 @@ class VehicleDetailsScreen extends React.Component {
           </View>
 
           <View style={styles.freeOptions}>
-            <Text style={styles.freeOptionsText}>Free cancellation</Text>
-            <Text style={styles.freeOptionsText}>Unlimited mileage</Text>
-            <Text style={styles.freeOptionsText}>Not charged until pick up</Text>
+            <View style={styles.freeOptionLine}>
+              <Icon style={styles.freeOptionIcon} name={'check'} size={15} />
+              <Text style={styles.freeOptionsText}>Free cancellation</Text>
+            </View>
+            <View style={styles.freeOptionLine}>
+              <Icon style={styles.freeOptionIcon} name={'check'} size={15} />
+              <Text style={styles.freeOptionsText}>Unlimited mileage</Text>
+            </View>
+            <View style={styles.freeOptionLine}>
+              <Icon style={styles.freeOptionIcon} name={'check'} size={15} />
+              <Text style={styles.freeOptionsText}>Not charged until pick up</Text>
+            </View>
           </View>
 
           <View style={styles.freeOptions}>
-            <Text style={styles.includedOptionsText}>Automatic transmission</Text>
-            <Text style={styles.includedOptionsText}>Air conditioner</Text>
-            <Text style={styles.includedOptionsText}>4 passengers</Text>
-            <Text style={styles.includedOptionsText}>4 doors</Text>
+            <View style={styles.freeOptionLine}>
+              <Icon style={styles.includedOptionsIcon} name={'angle-right'} size={15} />
+              <Text style={styles.includedOptionsText}>Automatic transmission</Text>
+            </View>
+            <View style={styles.freeOptionLine}>
+              <Icon style={styles.includedOptionsIcon} name={'angle-right'} size={15} />
+              <Text style={styles.includedOptionsText}>Air conditioner</Text>
+            </View>
+            <View style={styles.freeOptionLine}>
+              <Icon style={styles.includedOptionsIcon} name={'angle-right'} size={15} />
+              <Text style={styles.includedOptionsText}>4 passengers</Text>
+            </View>
+            <View style={styles.freeOptionLine}>
+              <Icon style={styles.includedOptionsIcon} name={'angle-right'} size={15} />
+              <Text style={styles.includedOptionsText}>4 doors</Text>
+            </View>
+
           </View>
 
           <TouchableOpacity style={styles.button}
@@ -112,7 +134,10 @@ const styles = StyleSheet.create({
   buttonText: { fontSize: 16, fontWeight: '500', color: '#ffffff', textAlign: 'center', },
 
   freeOptions: { flex: 1, flexDirection: 'column', alignItems: 'flex-start', width: '85%', },
+  freeOptionLine: { flexDirection: 'row', alignItems: 'center' },
   freeOptionsText: { color: '#80ff88', },
+  freeOptionIcon: { color: '#80ff88', paddingRight: 10, },
+  includedOptionsIcon: { color: '#1c1c1c', paddingRight: 10, },
   includedOptionsText: { color: '#1c1c1c', },
 });
 
