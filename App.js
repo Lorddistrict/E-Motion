@@ -13,6 +13,7 @@ import BookingScreen from "./src/components/Booking/BookingScreen";
 import SearchScreen from "./src/components/Search/SearchScreen";
 import ProfileScreen from "./src/components/Profile/ProfileScreen";
 import RegisterScreen from "./src/components/Login/RegisterScreen";
+import VehicleDetailsScreen from "./src/components/Booking/VehicleDetailsScreen";
 
 class App extends React.Component {
   render() {
@@ -32,35 +33,35 @@ const AppTabNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => (
         <Icon name="home" size={25} color={tintColor} />
-      )
-    }
+      ),
+    },
   },
   Booking: {
     screen: BookingScreen,
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => (
         <Icon name="th-large" size={25} color={tintColor} />
-      )
-    }
+      ),
+    },
   },
   Search: {
     screen: SearchScreen,
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => (
         <Icon name="search" size={25} color={tintColor} />
-      )
-    }
+      ),
+    },
   },
   Profile: {
     screen: ProfileScreen,
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => (
         <Icon name="user" size={25} color={tintColor} />
-      )
-    }
+      ),
+    },
   }
 }, {
-  initialRouteName: 'Booking',
+  initialRouteName: 'Booking', // Pull out this after debug
   tabBarOptions: {
     activeTintColor: '#9f57ff',
     inactiveTintColor: 'gray',
@@ -70,8 +71,28 @@ const AppTabNavigator = createBottomTabNavigator({
   },
 });
 
+const VehicleStack = createStackNavigator({
+  Vehicle: {
+    screen: VehicleDetailsScreen,
+    navigationOptions: {
+      header: null,
+    }
+  },
+});
+
 const AppStack = createStackNavigator({
-  Tabs: AppTabNavigator,
+  Tabs: {
+    screen: AppTabNavigator,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Vehicle: {
+    screen: VehicleStack,
+    navigationOptions: {
+      header: null,
+    },
+  },
 });
 
 const AuthStack = createStackNavigator({
@@ -90,10 +111,9 @@ const AuthStack = createStackNavigator({
   Register: {
     screen: RegisterScreen,
     navigationOptions: {
-      headerStyle: {
-        backgroundColor: '#1c313a',
+      navigationOptions: {
+        header: null,
       },
-      headerTintColor: '#ffffff',
     },
   },
 }, {

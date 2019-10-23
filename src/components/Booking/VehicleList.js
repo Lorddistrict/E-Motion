@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, ActivityIndicator, FlatList, Text, Image, Dimensions} from 'react-native';
+import {StyleSheet, View, ActivityIndicator, FlatList, Text, Image, TouchableOpacity} from 'react-native';
 import StarRating from 'react-native-star-rating';
 
 export default class VehicleList extends React.Component {
@@ -10,7 +10,6 @@ export default class VehicleList extends React.Component {
       loading: true,
       dataSource: []
     };
-    console.log(this.state.dataSource);
   }
 
   async componentDidMount() {
@@ -18,12 +17,10 @@ export default class VehicleList extends React.Component {
       .then(response => response.json())
       .then((response) => {
         if (response.success) {
-          console.log('success');
           this.setState({
             loading: false,
             dataSource: response.vehicles
           });
-          console.log(this.state.dataSource);
         } else {
           alert('Error, response returned not a success');
         }
@@ -38,28 +35,39 @@ export default class VehicleList extends React.Component {
   };
 
   _renderItems = ({item}) => (
-    <View style={{flex: 1, backgroundColor: '#ffffff', alignItems: 'center', marginVertical: 10, flexDirection: 'row', paddingHorizontal: 20 }}>
-      <View style={{ width: 200, flexDirection: 'column' }}>
-        <View style={{paddingVertical: 3}}>
-          <Text style={{color: '#1c1c1c'}}>{item.brand} {item.name}</Text>
-        </View>
-        <View style={{paddingVertical: 3}}>
-          <Text style={{color: '#9b9b9b'}}>${item.pricePerDay}</Text>
-        </View>
-        <View style={{width: 25, paddingVertical: 3}}>
-          <StarRating
-            disabled={false}
-            maxStars={5}
-            rating={item.rate}
-            starSize={15}
-            fullStarColor={'#ffb63f'}
-          />
+    <TouchableOpacity
+      onPress={() => {
+        this.props.navigation.navigate('Vehicle', {
+          vehicleData: item,
+          navigation: this.props.navigation,
+        });
+      }}
+    >
+      <View style={styles.card}>
+        <View style={styles.cardLine}>
+          <View style={styles.cardSizer}>
+            <View style={styles.cardTextBox}>
+              <Text style={styles.cardTextBrand}>{item.brand} {item.name}</Text>
+            </View>
+            <View style={styles.cardTextBox}>
+              <Text style={styles.cardTextPrice}>${item.pricePerDay} /d</Text>
+            </View>
+            <View style={styles.cardStars}>
+              <StarRating
+                disabled={false}
+                maxStars={5}
+                rating={item.rate}
+                starSize={15}
+                fullStarColor={'#ffb63f'}
+              />
+            </View>
+          </View>
+          <View style={styles.carContainer}>
+            <Image style={styles.carImage} source={require('../../../assets/cars/car1.png')} />
+          </View>
         </View>
       </View>
-      <View style={{ marginLeft: 30 }}>
-        <Image style={{width: 90, height: 90, marginRight: 20}} source={require('../../../assets/cars/car1.png')} />
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 
   render() {
@@ -77,28 +85,28 @@ export default class VehicleList extends React.Component {
           renderItem={this._renderItems}
           keyExtractor={(item, index) => item._id}
           ItemSeparatorComponent={this._flatListItemSeparator}
-          style={{flex: 1, width: '100%'}}
+          style={styles.flatList}
         />
       </View>
     )
   }
 }
 
+// Changer le design et retirer les width en val fixes !!!!
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  loader: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ffffff',
-  },
-  itemSeparator: {
-    height: .5,
-    width: "100%",
-    backgroundColor: "rgba(0,0,0,0.5)",
-  },
+  container: { flex: 1, justifyContent: 'flex-start', alignItems: 'center', },
+  loader: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent', },
+  itemSeparator: { height: .5, width: "100%", backgroundColor: "rgba(0,0,0,0.5)", },
+
+  card: { flex: 1, backgroundColor: '#ffffff', alignItems: 'center', marginHorizontal: 30, marginVertical: 10, flexDirection: 'column', },
+  cardLine: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '85%', },
+  cardSizer: { flexDirection: 'column', },
+  cardTextBox: { paddingVertical: 3, },
+  cardTextBrand: { color: '#1c1c1c' },
+  cardTextPrice: { color: '#9b9b9b' },
+  cardStars: { width: 25, paddingVertical: 3, },
+  carContainer: { marginLeft: 30, },
+  carImage: { width: 90, height: 90, marginRight: 20, },
+  flatList: { flex: 1, width: '100%' },
 });

@@ -1,43 +1,33 @@
 import React, {Component} from 'react'
-import {View, Text, StyleSheet, Platform} from 'react-native';
+import {View, Text, StyleSheet, } from 'react-native';
+
 import VehicleList from './VehicleList';
 import BackgroundApp from "../Background/BackgroundApp";
-import Icon from "react-native-vector-icons/FontAwesome";
 
-export default class BookingScreen extends Component {
+class BookingScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
         <BackgroundApp />
+        <View style={styles.title}>
+          <Text style={styles.titleText}>Cars available</Text>
+        </View>
         <View style={styles.list}>
-          <Text style={styles.title}>Cars available</Text>
-          <VehicleList />
+          <VehicleList navigation={this.props.navigation} />
         </View>
       </View>
     )
   }
 }
 
+export default BookingScreen;
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#cec3ff',
-  },
-  list: {
-    flex: 1,
-    marginTop: 100,
-  },
-  title: {
-    color: '#ffffff',
-    fontSize: 20,
-    backgroundColor: 'rgba(58,58,58,0.8)',
-    paddingLeft: 10,
-    paddingVertical: 5,
-  },
-  icon: {
-    marginRight: 10,
-    color: '#ffffff',
-  }
+  container: { flex: 1, backgroundColor: '#cec3ff', },
+
+  title: { marginTop: 103, },
+  titleText: { color: '#ffffff', fontSize: 20, backgroundColor: 'rgba(58,58,58,0.8)', paddingLeft: 10, paddingVertical: 5, },
+
+  list: { flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 20, },
+  icon: { marginRight: 10, color: '#ffffff', }
 });
