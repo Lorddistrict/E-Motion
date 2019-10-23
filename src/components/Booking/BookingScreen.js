@@ -11,10 +11,8 @@ export default class BookingScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <BackgroundApp/>
-        <View style={styles.listContainer}>
-          <VehicleList/>
-        </View>
+        <BackgroundApp />
+        <VehicleList />
       </View>
     )
   }
@@ -25,8 +23,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  listContainer: {
-    marginTop: 60,
-  },
+    backgroundColor: '#cec3ff',
+  }
 });

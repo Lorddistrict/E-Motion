@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  ActivityIndicator,
-  FlatList,
-  Text,
-  Alert,
-  Image,
-  Button
-} from 'react-native';
+import {StyleSheet, View, ActivityIndicator, FlatList, Text, Image, Dimensions} from 'react-native';
 
 export default class VehicleList extends React.Component {
 
@@ -18,56 +9,44 @@ export default class VehicleList extends React.Component {
       loading: true,
       dataSource: []
     };
+    console.log(this.state.dataSource);
   }
 
   async componentDidMount() {
-    fetch('http://51.77.221.45:3000/vehicle')
+    fetch('http://192.168.1.23:3000/vehicles')
       .then(response => response.json())
-      .then((responseJson) => {
-        this.setState({
-          loading: false,
-          dataSource: responseJson
-        })
+      .then((response) => {
+        if (response.success) {
+          console.log('success');
+          this.setState({
+            loading: false,
+            dataSource: response.vehicles
+          });
+          console.log(this.state.dataSource);
+        } else {
+          alert('Error, response returned not a success');
+        }
       })
       .catch(error => console.log(error))
   }
 
-  FlatListItemSeparator = () => {
+  _flatListItemSeparator = () => {
     return (
-      <View style={{
-        height: .5,
-        width: "100%",
-        backgroundColor: "rgba(0,0,0,0.5)",
-      }}
-      />
+      <View style={styles.itemSeparator} />
     );
   };
 
-  renderItem = (data) => {
-    <View style={styles.list}>
-      <View style={styles.elementContainer}>
-        <View style={styles.imgBox}>
-          <Image
-            style={{width: 150, height: 150}}
-            source={{uri: data.item.main_picture}}
-          />
-        </View>
-        <View style={styles.dataBox}>
-          <View>
-            <Text style={styles.lightText}>Modèle : {data.item.model}</Text>
-            <Text style={styles.lightText}>Couleur : {data.item.color}</Text>
-            <Text style={styles.lightText}>N° de plaque : {data.item.license_plate}</Text>
-            <Text style={styles.lightText}>Prix : {data.item.rental_price}€/j</Text>
-          </View>
-          <Button
-            title="Voir l'offre"
-            onPress={() => Alert.alert('Clicked on ' + data.item.model)}
-            style={styles.offerBtn}
-          />
-        </View>
+  _renderItems = ({item}) => (
+    <View style={{flex: 1, backgroundColor: '#ffffff', alignItems: 'center', marginVertical: 10, flexDirection: 'row', width: '100%', paddingHorizontal: 10 }}>
+      <View style={{ width: 200 }}>
+        <Text style={{color: '#1c1c1c'}}>{item.brand} {item.name}</Text>
+        <Text style={{color: '#9b9b9b'}}>${item.pricePerDay}</Text>
+      </View>
+      <View style={{ marginLeft: 30 }}>
+        <Image style={{width: 90, height: 90}} source={require('../../../assets/cars/car1.png')} />
       </View>
     </View>
-  };
+  );
 
   render() {
     if (this.state.loading) {
@@ -81,9 +60,10 @@ export default class VehicleList extends React.Component {
       <View style={styles.container}>
         <FlatList
           data={this.state.dataSource}
-          ItemSeparatorComponent={this.FlatListItemSeparator}
-          renderItem={item => this.renderItem(item)}
-          keyExtractor={item => item.uuid.toString()}
+          renderItem={this._renderItems}
+          keyExtractor={(item, index) => item._id}
+          ItemSeparatorComponent={this._flatListItemSeparator}
+          style={{flex: 1, width: '100%'}}
         />
       </View>
     )
@@ -93,8 +73,9 @@ export default class VehicleList extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#145373',
-    width: '100%',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginTop: 60,
   },
   loader: {
     flex: 1,
@@ -102,29 +83,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#ffffff',
   },
-  list: {
-    paddingVertical: 4,
-    margin: 5,
-    backgroundColor: '#ffffff',
+  itemSeparator: {
+    height: .5,
+    width: "100%",
+    backgroundColor: "rgba(0,0,0,0.5)",
   },
-  elementContainer: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  imgBox: {
-    width: 150,
-    height: 150,
-    marginRight: 10,
-    flexDirection: 'column',
-  },
-  dataBox: {
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: 150,
-  },
-  offerBtn: {
-    flex: 1,
-    marginBottom: 50,
-    color: '#ffffff'
-  }
 });
