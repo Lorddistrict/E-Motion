@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, ActivityIndicator, FlatList, Text, Image, Dimensions} from 'react-native';
+import StarRating from 'react-native-star-rating';
 
 export default class VehicleList extends React.Component {
 
@@ -37,13 +38,26 @@ export default class VehicleList extends React.Component {
   };
 
   _renderItems = ({item}) => (
-    <View style={{flex: 1, backgroundColor: '#ffffff', alignItems: 'center', marginVertical: 10, flexDirection: 'row', width: '100%', paddingHorizontal: 10 }}>
-      <View style={{ width: 200 }}>
-        <Text style={{color: '#1c1c1c'}}>{item.brand} {item.name}</Text>
-        <Text style={{color: '#9b9b9b'}}>${item.pricePerDay}</Text>
+    <View style={{flex: 1, backgroundColor: '#ffffff', alignItems: 'center', marginVertical: 10, flexDirection: 'row', paddingHorizontal: 20 }}>
+      <View style={{ width: 200, flexDirection: 'column' }}>
+        <View style={{paddingVertical: 3}}>
+          <Text style={{color: '#1c1c1c'}}>{item.brand} {item.name}</Text>
+        </View>
+        <View style={{paddingVertical: 3}}>
+          <Text style={{color: '#9b9b9b'}}>${item.pricePerDay}</Text>
+        </View>
+        <View style={{width: 25, paddingVertical: 3}}>
+          <StarRating
+            disabled={false}
+            maxStars={5}
+            rating={item.rate}
+            starSize={15}
+            fullStarColor={'#ffb63f'}
+          />
+        </View>
       </View>
       <View style={{ marginLeft: 30 }}>
-        <Image style={{width: 90, height: 90}} source={require('../../../assets/cars/car1.png')} />
+        <Image style={{width: 90, height: 90, marginRight: 20}} source={require('../../../assets/cars/car1.png')} />
       </View>
     </View>
   );
@@ -75,7 +89,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginTop: 60,
   },
   loader: {
     flex: 1,
