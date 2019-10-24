@@ -1,22 +1,21 @@
 import React, {Component} from 'react'
-import {View, Text, StyleSheet, Image, TouchableOpacity, TextInput} from 'react-native';
-import HeaderTitle from "../../Headers/elements/HeaderTitle";
+import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 import BackArrow from "../../Headers/elements/BackArrow";
+import HeaderTitle from "../../Headers/elements/HeaderTitle";
 import StarRating from "react-native-star-rating";
-import DatePicker from 'react-native-datepicker'
-import Icon from "react-native-vector-icons/FontAwesome";
 
-class BookVehicleScreen extends Component {
+class PurchaseSummaryScreen extends Component {
 
   constructor(props) {
     super(props);
-    const vehicleData = this.props.navigation.getParam('vehicleData');
     this.state = {
-      dateStart: '2019-10-01',
-      dateEnd: '2019-10-07',
-      details: '',
-      vehicle: vehicleData,
-    }
+      vehicle: this.props.navigation.getParam('vehicleData'),
+      details: this.props.navigation.getParam('details'),
+      dateStart: this.props.navigation.getParam('dateStart'),
+      dateEnd: this.props.navigation.getParam('dateEnd'),
+      dateStartObj: new Date(this.state.dateStart + ' 00:00:00'),
+    };
+    console.log(dateStartObj);
   }
 
   render() {
@@ -49,105 +48,37 @@ class BookVehicleScreen extends Component {
             />
           </View>
         </View>
-        <View style={styles.cardDatePicker}>
-          <DatePicker
-            style={styles.datepicker}
-            date={this.state.dateStart}
-            mode="date"
-            placeholder="select date"
-            format="YYYY-MM-DD"
-            minDate={this.state.dateStart}
-            maxDate="2019-12-31"
-            confirmBtnText="Confirm"
-            cancelBtnText="Cancel"
-            iconComponent={
-              <Icon
-                name="calendar-o"
-                size={30}
-                color="#bababa"
-              />
-            }
-            customStyles={{
-              dateIcon: {
-                position: 'absolute',
-                left: 0,
-                top: 10,
-                marginLeft: 0
-              },
-              dateInput: {
-                marginRight: 10
-              }
-            }}
-            onDateChange={ (date) => {this.setState({dateStart: date})} }
-          />
-          <DatePicker
-            style={styles.datepicker}
-            date={this.state.dateEnd}
-            mode="date"
-            placeholder="select date"
-            format="YYYY-MM-DD"
-            minDate={this.state.dateEnd}
-            maxDate="2019-12-31"
-            confirmBtnText="Confirm"
-            cancelBtnText="Cancel"
-            iconComponent={
-              <Icon
-                name="calendar-o"
-                size={30}
-                color="#bababa"
-              />
-            }
-            customStyles={{
-              dateIcon: {
-                position: 'absolute',
-                left: 0,
-                top: 10,
-                marginLeft: 0
-              },
-              dateInput: {
-                marginRight: 10
-              }
-            }}
-            onDateChange={ (date) => {this.setState({dateEnd: date})} }
-          />
-          <View style={styles.textarea}>
-            <TextInput
-              style={styles.cardDesc}
-              underlineColorAndroid={'rgba(0,0,0,0)'}
-              placeholder={'Details'}
-              placeholderTextColor={'#b9b9b9'}
-              onChangeText={ (details) => this.setState({details}) }
-              multiline = {true}
-              numberOfLines = {10}
-            />
+
+        <View>
+          <View style={styles.cardContainer}>
+            <Text style={styles.date}>{this.state.dateStart}</Text>
+            <Text style={styles.arrow}>-></Text>
+            <Text style={styles.date}>{this.state.dateEnd}</Text>
+            <Text style={styles.result}>$157.50</Text>
           </View>
+          <Text style={styles.details}>{this.state.details}</Text>
         </View>
 
         <View style={{flex: 1, alignItems: 'center', }}>
           <TouchableOpacity
             style={styles.next}
             onPress={() => {
-              this.props.navigation.navigate('PurchaseSummary', {
-                vehicleData: this.state.vehicle,
-                dateStart: this.state.dateStart,
-                dateEnd: this.state.dateEnd,
-                details: this.state.details,
+              this.props.navigation.navigate('VehicleDetails', {
                 navigation: this.props.navigation,
               });
             }}
           >
-            <Text style={styles.nextText}>Next</Text>
+            <Text style={styles.nextText}>Book</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.cancel}
             onPress={() => {
               this.props.navigation.navigate('VehicleDetails', {
-                vehicleData: this.state.vahicle,
                 navigation: this.props.navigation,
               });
             }}
           >
-            <Text style={styles.cancelText}>Cancel</Text>
+            <Text style={styles.cancelText}>Previous</Text>
           </TouchableOpacity>
         </View>
 
@@ -156,7 +87,7 @@ class BookVehicleScreen extends Component {
   }
 }
 
-export default BookVehicleScreen;
+export default PurchaseSummaryScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -184,6 +115,13 @@ const styles = StyleSheet.create({
     elevation: 5,
     alignItems: 'center',
   },
+  result: {
+    color: '#5e55ff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+
+
   cardBloc: {
     flex: 1,
     flexDirection: 'column',
@@ -232,17 +170,6 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
     alignItems: 'center',
-  },
-  datepicker: {
-    width: '100%',
-    marginVertical: 20,
-  },
-  textarea: {
-    marginTop: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    width: '100%',
-    padding: 5,
   },
   cardDesc: {
     height: 150,

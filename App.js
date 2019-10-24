@@ -16,6 +16,7 @@ import RegisterScreen from "./src/components/Login/RegisterScreen";
 import VehicleDetailsScreen from "./src/components/Booking/screens/VehicleDetailsScreen";
 import UserBookingScreen from "./src/components/Booking/screens/UserBookingScreen";
 import BookVehicleScreen from './src/components/Booking/screens/BookVehicleScreen';
+import PurchaseSummaryScreen from "./src/components/Purchase/screens/PurchaseSummaryScreen";
 
 class App extends React.Component {
   render() {
@@ -78,19 +79,25 @@ const VehicleBookingStack = createStackNavigator({
     screen: VehicleDetailsScreen,
     navigationOptions: {
       header: null,
-    }
+    },
   },
   UserBookings: { // List of user bookings
     screen: UserBookingScreen,
     navigationOptions: {
       header: null,
-    }
+    },
   },
   BookVehicle: { // After details and before payment
     screen: BookVehicleScreen,
     navigationOptions: {
       header: null,
-    }
+    },
+  },
+  PurchaseSummary: { // After BookVehicle - summary of $$$
+    screen: PurchaseSummaryScreen,
+    navigationOptions: {
+      header: null,
+    },
   },
 });
 
