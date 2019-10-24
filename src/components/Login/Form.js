@@ -29,15 +29,17 @@ class Form extends React.Component {
         <View style={styles.loginBox}>
 
           <View style={styles.field}>
-            <Icon style={styles.icon}
-                  name={Platform.OS === "ios" ? "ios-person" : "md-person"}
-                  size={25}
+            <Icon
+              style={styles.icon}
+              name={Platform.OS === "ios" ? "ios-person" : "md-person"}
+              size={25}
             />
-            <TextInput style={styles.inputBox}
-                       underlineColorAndroid={'rgba(0,0,0,0)'}
-                       placeholder={'Email'}
-                       placeholderTextColor={'#b9b9b9'}
-                       onChangeText={ (email) => this.setState({email}) }
+            <TextInput
+              style={styles.inputBox}
+              underlineColorAndroid={'rgba(0,0,0,0)'}
+              placeholder={'Email'}
+              placeholderTextColor={'#b9b9b9'}
+              onChangeText={ (email) => this.setState({email}) }
             />
           </View>
 
@@ -46,17 +48,19 @@ class Form extends React.Component {
                   name={Platform.OS === "ios" ? "ios-lock" : "md-lock"}
                   size={25}
             />
-            <TextInput style={styles.inputBox}
-                       underlineColorAndroid={'rgba(0,0,0,0)'}
-                       placeholder={'Password'}
-                       placeholderTextColor={'#b9b9b9'}
-                       secureTextEntry={true}
-                       onChangeText={ (password) => this.setState({password}) }
+            <TextInput
+              style={styles.inputBox}
+              underlineColorAndroid={'rgba(0,0,0,0)'}
+              placeholder={'Password'}
+              placeholderTextColor={'#b9b9b9'}
+              secureTextEntry={true}
+              onChangeText={ (password) => this.setState({password}) }
             />
           </View>
 
-          <TouchableOpacity style={styles.button}
-                            onPress={this.login}
+          <TouchableOpacity
+            style={styles.button}
+            onPress={this.login}
           >
             <Text style={styles.buttonText}>
               {this.props.type}
@@ -128,7 +132,7 @@ const styles = StyleSheet.create({
   inputBox: {
     width: '90%',
     fontSize: 16,
-    color: '#ffffff',
+    color: '#000000',
     marginVertical: 10,
     paddingHorizontal: 10,
     height: 50,

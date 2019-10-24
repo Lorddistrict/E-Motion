@@ -4,8 +4,9 @@ import {StyleSheet, View, Text, ImageBackground} from 'react-native';
 class BackgroundCity extends React.Component {
   render() {
     return (
-      <ImageBackground style={styles.backgroundImage}
-                       source={require('../../../assets/bg2.jpg')}
+      <ImageBackground
+        style={styles.backgroundImage}
+        source={require('../../../../assets/bg2.jpg')}
       >
         <View style={styles.mainContainer}>
           <Text style={styles.appTitle}>E-Motion</Text>

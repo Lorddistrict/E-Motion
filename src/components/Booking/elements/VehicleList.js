@@ -28,16 +28,10 @@ export default class VehicleList extends React.Component {
       .catch(error => console.log(error))
   }
 
-  _flatListItemSeparator = () => {
-    return (
-      <View style={styles.itemSeparator} />
-    );
-  };
-
   _renderItems = ({item}) => (
     <TouchableOpacity
       onPress={() => {
-        this.props.navigation.navigate('Vehicle', {
+        this.props.navigation.navigate('VehicleDetails', {
           vehicleData: item,
           navigation: this.props.navigation,
         });
@@ -63,7 +57,10 @@ export default class VehicleList extends React.Component {
             </View>
           </View>
           <View style={styles.carContainer}>
-            <Image style={styles.carImage} source={require('../../../assets/cars/car1.png')} />
+            <Image
+              style={styles.carImage}
+              source={require('../../../../assets/cars/car1.png')}
+            />
           </View>
         </View>
       </View>
@@ -84,7 +81,6 @@ export default class VehicleList extends React.Component {
           data={this.state.dataSource}
           renderItem={this._renderItems}
           keyExtractor={(item, index) => item._id}
-          ItemSeparatorComponent={this._flatListItemSeparator}
           style={styles.flatList}
         />
       </View>
@@ -95,18 +91,33 @@ export default class VehicleList extends React.Component {
 // Changer le design et retirer les width en val fixes !!!!
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'flex-start', alignItems: 'center', },
-  loader: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent', },
-  itemSeparator: { height: .5, width: "100%", backgroundColor: "rgba(0,0,0,0.5)", },
+  container: {flex: 1, justifyContent: 'flex-start', alignItems: 'center',},
+  loader: {flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent',},
 
-  card: { flex: 1, backgroundColor: '#ffffff', alignItems: 'center', marginHorizontal: 30, marginVertical: 10, flexDirection: 'column', },
-  cardLine: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '85%', },
-  cardSizer: { flexDirection: 'column', },
-  cardTextBox: { paddingVertical: 3, },
-  cardTextBrand: { color: '#1c1c1c' },
-  cardTextPrice: { color: '#9b9b9b' },
-  cardStars: { width: 25, paddingVertical: 3, },
-  carContainer: { marginLeft: 30, },
-  carImage: { width: 90, height: 90, marginRight: 20, },
-  flatList: { flex: 1, width: '100%' },
+  card: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+    alignItems: 'center',
+    marginHorizontal: 30,
+    marginVertical: 10,
+    flexDirection: 'column',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  cardLine: {flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '85%',},
+  cardSizer: {flexDirection: 'column',},
+  cardTextBox: {paddingVertical: 3,},
+  cardTextBrand: {color: '#1c1c1c'},
+  cardTextPrice: {color: '#9b9b9b'},
+  cardStars: {width: 25, paddingVertical: 3,},
+  carContainer: {marginLeft: 30,},
+  carImage: {width: 90, height: 90, marginRight: 20,},
+
+  flatList: {flex: 1, width: '100%',},
 });

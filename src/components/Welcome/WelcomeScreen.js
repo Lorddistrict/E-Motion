@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {View, StyleSheet, Text, ImageBackground, Image} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
-// Screens
-import BackgroundCity from "../Background/BackgroundCity";
+import BackgroundCity from "../Background/elements/BackgroundCity";
 
 class WelcomeScreen extends Component {
   render() {
@@ -43,11 +41,7 @@ class WelcomeScreen extends Component {
 export default WelcomeScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#9f57ff',
-    justifyContent: 'flex-end',
-  },
+  container: { flex: 1, backgroundColor: '#9f57ff', justifyContent: 'flex-end', },
   btmContainer: {
     width: '100%',
     alignItems: 'center',
@@ -99,6 +93,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(69,53,255,0.3)',
     alignItems: 'center',
     justifyContent: 'flex-end',
+    paddingBottom: 15,
   },
   txtNoAccount: {
     color: '#ffffff',

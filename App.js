@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, ImageBackground, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createStackNavigator} from "react-navigation-stack";
@@ -9,11 +9,13 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import WelcomeScreen from './src/components/Welcome/WelcomeScreen';
 import LoginScreen from './src/components/Login/LoginScreen';
 import HomeScreen from "./src/components/Home/HomeScreen";
-import BookingScreen from "./src/components/Booking/BookingScreen";
+import BookingScreen from "./src/components/Booking/screens/BookingScreen";
 import SearchScreen from "./src/components/Search/SearchScreen";
 import ProfileScreen from "./src/components/Profile/ProfileScreen";
 import RegisterScreen from "./src/components/Login/RegisterScreen";
-import VehicleDetailsScreen from "./src/components/Booking/VehicleDetailsScreen";
+import VehicleDetailsScreen from "./src/components/Booking/screens/VehicleDetailsScreen";
+import UserBookingScreen from "./src/components/Booking/screens/UserBookingScreen";
+import BookVehicleScreen from './src/components/Booking/screens/BookVehicleScreen';
 
 class App extends React.Component {
   render() {
@@ -71,13 +73,27 @@ const AppTabNavigator = createBottomTabNavigator({
   },
 });
 
-const VehicleStack = createStackNavigator({
-  Vehicle: {
+const VehicleBookingStack = createStackNavigator({
+  VehicleDetails: { // Vehicle details
     screen: VehicleDetailsScreen,
     navigationOptions: {
       header: null,
     }
   },
+  UserBookings: { // List of user bookings
+    screen: UserBookingScreen,
+    navigationOptions: {
+      header: null,
+    }
+  },
+  BookVehicle: { // After details and before payment
+    screen: BookVehicleScreen,
+    navigationOptions: {
+      header: null,
+    }
+  },
+}, {
+  initialRouteName: 'BookVehicle', // delete
 });
 
 const AppStack = createStackNavigator({
@@ -87,8 +103,8 @@ const AppStack = createStackNavigator({
       header: null,
     },
   },
-  Vehicle: {
-    screen: VehicleStack,
+  VehicleBooking: {
+    screen: VehicleBookingStack,
     navigationOptions: {
       header: null,
     },
@@ -97,7 +113,7 @@ const AppStack = createStackNavigator({
 
 const AuthStack = createStackNavigator({
   Welcome: {
-    screen: AppTabNavigator,
+    screen: AppTabNavigator, // welcome screen
     navigationOptions: {
       header: null,
     },
@@ -111,9 +127,7 @@ const AuthStack = createStackNavigator({
   Register: {
     screen: RegisterScreen,
     navigationOptions: {
-      navigationOptions: {
-        header: null,
-      },
+      header: null,
     },
   },
 }, {

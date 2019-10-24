@@ -3,8 +3,10 @@ import {StyleSheet, View, Text, TouchableOpacity, Image,} from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome";
 
 // Screens
-import BackgroundApp from "../Background/BackgroundApp";
+import BackgroundApp from "../../Background/elements/BackgroundApp";
 import StarRating from "react-native-star-rating";
+import HeaderTitle from "../../Headers/elements/HeaderTitle";
+import BackArrow from "../../Headers/elements/BackArrow";
 
 class VehicleDetailsScreen extends React.Component {
 
@@ -16,30 +18,12 @@ class VehicleDetailsScreen extends React.Component {
     };
   }
 
-  _bookTheVehicle = () => {
-
-  };
-
   render() {
     return (
       <View style={styles.container}>
         <BackgroundApp />
-        <View style={styles.navContainer}>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('Booking');
-            }}
-          >
-            <Icon style={styles.icon}
-                  name={'arrow-left'}
-                  size={30}
-            />
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.title}>
-          <Text style={styles.titleText}>Car Details</Text>
-        </View>
+        <BackArrow navigation={this.props.navigation} />
+        <HeaderTitle title={'Details'} />
 
         <View style={styles.card}>
 
@@ -62,7 +46,10 @@ class VehicleDetailsScreen extends React.Component {
               </View>
             </View>
             <View style={styles.carContainer}>
-              <Image style={styles.carImage} source={require('../../../assets/cars/car1.png')} />
+              <Image
+                style={styles.carImage}
+                source={require('../../../../assets/cars/car1.png')}
+              />
             </View>
           </View>
 
@@ -101,8 +88,14 @@ class VehicleDetailsScreen extends React.Component {
 
           </View>
 
-          <TouchableOpacity style={styles.button}
-                            onPress={this._bookTheVehicle}
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.props.navigation.navigate('BookVehicle', {
+                vehicle: this.state.vehicle,
+                navigation: this.props.navigation,
+              });
+            }}
           >
             <Text style={styles.buttonText}>Book</Text>
           </TouchableOpacity>
@@ -115,11 +108,6 @@ class VehicleDetailsScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#cec3ff', },
-  navContainer: { justifyContent: 'flex-start', marginTop: 40, marginLeft: 20, alignItems: 'flex-start', },
-  icon: { color: '#ffffff' },
-
-  title: { marginTop: 40, },
-  titleText: { color: '#ffffff', fontSize: 20, backgroundColor: 'rgba(58,58,58,0.8)', paddingLeft: 10, paddingVertical: 5, },
 
   card: { flex: 1, backgroundColor: '#ffffff', alignItems: 'center', marginHorizontal: 20, marginVertical: 40, flexDirection: 'column', },
   cardLine: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '85%', },
@@ -134,9 +122,9 @@ const styles = StyleSheet.create({
   buttonText: { fontSize: 16, fontWeight: '500', color: '#ffffff', textAlign: 'center', },
 
   freeOptions: { flex: 1, flexDirection: 'column', alignItems: 'flex-start', width: '85%', },
-  freeOptionLine: { flexDirection: 'row', alignItems: 'center' },
-  freeOptionsText: { color: '#80ff88', },
-  freeOptionIcon: { color: '#80ff88', paddingRight: 10, },
+  freeOptionLine: { flexDirection: 'row', alignItems: 'center', paddingVertical: 5, },
+  freeOptionsText: { color: '#5cb75c', },
+  freeOptionIcon: { color: '#5cb75c', paddingRight: 10, },
   includedOptionsIcon: { color: '#1c1c1c', paddingRight: 10, },
   includedOptionsText: { color: '#1c1c1c', },
 });

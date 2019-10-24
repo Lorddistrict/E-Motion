@@ -1,10 +1,5 @@
 import React, {Component} from 'react'
-import {
-  StyleSheet,
-  View,
-  Text,
-  StatusBar
-} from 'react-native';
+import {StyleSheet, View, Text, StatusBar } from 'react-native';
 import Logo from "./Logo";
 import Form from "./Form";
 

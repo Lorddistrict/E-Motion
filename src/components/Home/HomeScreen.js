@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-import BackgroundApp from "../Background/BackgroundApp";
+import {View, StyleSheet, } from 'react-native';
+import BackgroundApp from "../Background/elements/BackgroundApp";
 
 export default class HomeScreen extends Component {
   render() {

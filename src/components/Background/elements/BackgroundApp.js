@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import {StyleSheet, View, Text, ImageBackground} from 'react-native';
 
-class BackgroundCity extends React.Component {
+class BackgroundApp extends React.Component {
   render() {
     return (
-      <ImageBackground style={styles.backgroundImage}
-                       source={require('../../../assets/bg2.jpg')}
-                       resizeMode={'cover'}
+      <ImageBackground
+        style={styles.backgroundImage}
+        source={require('../../../../assets/bg2.jpg')}
+        resizeMode={'cover'}
       >
       </ImageBackground>
     )
@@ -24,4 +25,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BackgroundCity;
+export default BackgroundApp;
