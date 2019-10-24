@@ -92,8 +92,6 @@ const VehicleBookingStack = createStackNavigator({
       header: null,
     }
   },
-}, {
-  initialRouteName: 'BookVehicle', // delete
 });
 
 const AppStack = createStackNavigator({

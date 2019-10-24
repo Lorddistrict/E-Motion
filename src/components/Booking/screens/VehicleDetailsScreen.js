@@ -92,7 +92,7 @@ class VehicleDetailsScreen extends React.Component {
             style={styles.button}
             onPress={() => {
               this.props.navigation.navigate('BookVehicle', {
-                vehicle: this.state.vehicle,
+                vehicleData: this.state.vehicle,
                 navigation: this.props.navigation,
               });
             }}
